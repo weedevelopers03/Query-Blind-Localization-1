@@ -132,7 +132,7 @@ class TestRegisterIndexing:
     checkpoint (timm/vit_small_patch14_reg4_dinov2.lvd142m or similar), which this sandbox cannot
     download - see tests/README.md. The check itself (below) is ready to run once weights load."""
 
-    @pytest.mark.skip(reason="needs real pretrained DINOv2-reg weights; see tests/README.md")
+    
     def test_register_norms_exceed_patch_median(self):
         adapter, model = _make("dinov2_reg_small")
         x = random_image(adapter, model, batch=4, seed=3)
@@ -143,9 +143,8 @@ class TestRegisterIndexing:
         patch_median = norms[:, layout["patch_idx"]].median()
         assert reg_mean > patch_median
 
-
-# ---------------------------------------------------------------------------------------- test 5
 @pytest.mark.skip(reason="needs internet: real DINO ViT-S/16 weights, the DINO-paper images, and "
                          "a LOST implementation + VOC07 to reproduce CorLoc; see tests/README.md")
 def test_known_result_replication():
     pass
+
